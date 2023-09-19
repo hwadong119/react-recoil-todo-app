@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+## recoil 설치
+```terminal
+npm install recoil
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br><br>
 
-## Available Scripts
+## 사용
 
-In the project directory, you can run:
+리코일을 사용하고자 하는 컴포넌트에 \<RecoilRoot>\</RecoilRoot> 로 감싸줌
 
-### `npm start`
+<br><br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Atom
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Atom은 상태(state)의 일부를 나타냄
 
-### `npm test`
+- 어떤 컴포넌트에서나 읽고 쓸 수 있음
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- atom의 값을 읽는 컴포넌트들은 암묵적으로 atom을 구독함. 그래서 atom에 어떤 변화가 있으면 그 atom을 구독하는 모든 컴포넌트들이 재렌더링 되는 결과가 발생
 
-### `npm run build`
+- useRecoilState()를 사용하여 컴포넌트가 atom을 읽고 쓰게 함 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- useSetRecoilState() 훅을 사용하여 전역 상태의 setter 함수 접근
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- useRecoilValue() 훅을 사용하여 전역 상태의 state 상태 값만을 참조
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- useResetRecoilState() 훅을 사용하여 전역 상태를 default(초기값)으로 Reset
 
-### `npm run eject`
+<br><br>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Selector
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Selector는 atom 혹은 다른 Selector 상태를 입력받아 동적인 데이터를 반환하는 순수 함수
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Selector가 참조하던 다른 상태가 변경되면 이도 같이 업데이트 되며, 이때 Selector를 바라보던 컴포넌트들이 리렌더링 되는 것
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- useRecoilValue() 훅을 사용
 
-## Learn More
+<br><br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 비동기 데이터 쿼리
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Selector를 이용해 비동기 요청을 한 데이터를 전역 상태에 넣어주기
 
-### Code Splitting
+- selector는 기본적으로 값을 자체적으로 캐싱
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 만약 입력된 적이 있는 값이라면 그 값을 기억하고, 이 값이 다시 호출 되면 이전에 캐싱된 결과를 바로 보여주기 때문에 비동기 데이터를 다루는 측면에서 유리
 
-### Analyzing the Bundle Size
+- 유저 데이터 같은 데이터는 애플리케이션을 만들 때 많은 컴포넌트에서 사용되기 때문에 전역 상태로 관리하면 좋음
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br><br>
+<br><br>
+<br><br>
+<br><br>
